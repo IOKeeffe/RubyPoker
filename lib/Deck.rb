@@ -19,10 +19,19 @@ class Deck
     end
 
     def shuffle
-        new_cards = []
-        [0..51].shuffle.each do |idx|
-            new_cards << cards[idx]
+        shuffled_cards = []
+        (0..51).to_a.shuffle.each do |idx|
+            shuffled_cards << cards[idx]
         end
-        cards = new_cards
+        cards = shuffled_cards
+    end
+    
+    def deal_card
+      cards.shift
+    end
+
+    def return_card(card)
+      raise ArgumentError, "Only cards can be returned to deck" unless card.is_a? Card
+      cards.push(card)
     end
 end
